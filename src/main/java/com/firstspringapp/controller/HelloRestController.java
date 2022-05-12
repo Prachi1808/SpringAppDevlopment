@@ -2,7 +2,7 @@
 
 package com.firstspringapp.controller;
 
-import com.firstspringapp.model.User;
+import com.bridgelabz.springbootproject.entity.User;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,7 +19,6 @@ public class HelloRestController  {
      * - Use CURL to demonstrate the REST API Call
      * - curl localhost:8080/hello -w "\n"
      * purpose : Warn the request mapping is done then all the statements  of sayHello gets executed
-     *
      * @return Hello World
      */
     @GetMapping(value = {"", "/", "/home"})
@@ -27,7 +26,6 @@ public class HelloRestController  {
         return "Hello World!!!";
     }
 
-}
     /**
      * UC2
      *Make REST Call to show Hello
@@ -70,17 +68,33 @@ public class HelloRestController  {
     /**
      * UC4
      * Make REST Call to show Hello Mark
-     * Taylor from BridgeLabz
      * - Use POST Request Method and pass first name and
      * last name in the Body
      * - Create User DTO Bean with firstName and lastName as
      * attributes.
      * - Use CURL to demonstrate the REST API Call
      * - curl -X POST -H "Content-Type: application/json" -d
-     * "http://localhost:8080/hello/create-user" -w "\n"
+     * "<a href="http://localhost:8080/hello/create-user">http://localhost:8080/hello/create-user</a>" -w "\n"
      */
     @PostMapping (value = {"/create-user","/post"})
     public String sayHello(@RequestBody User user){
+        return "Hello "+user.getFirstName() + " " +user.getLastName() +" !";
+    }
+    /**
+     * UC5
+     * Make REST Call to show Hello Mark
+     * Taylor from BridgeLabz
+     * - Use PUT Request Method and pass first name as
+     * Path Variable and last name as Query Parameter
+     * - Use CURL to demonstrate the REST API Call
+     * - curl -X PUT
+     * localhost:8080/hello/update/Mark/?lastName=Taylor
+     * -w "\n"
+     */
+    @PutMapping("/update/{firstName}")
+    public String sayHellotaylor(@PathVariable String firstName,@RequestParam String lastName,User user){
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
         return "Hello "+user.getFirstName() + " " +user.getLastName() +" !";
     }
 }
