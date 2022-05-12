@@ -47,8 +47,27 @@ public class HelloRestController  {
     public String sayHelloQuey(@RequestParam String name){
         return "Hello "+ name +" !";
     }
-}
+    /**
+     * UC3
+     * Make REST Call to show Hello
+     * Mark from BridgeLabz
+     * - Use GET Request Method and pass name as
+     * path variable
+     * - Use CURL to demonstrate the REST API Call
+     * - curl localhost:8080/hello/param/Mark -w
+     * "\n"
+     */
+    //pathvaraiable
+    @GetMapping("/param/{name}")
+    public String sayHelloParam(@PathVariable(value = "name") String name){
+        return "Hello "+ name +" from bridgelabz";
+    }
 
+    @GetMapping( {"/query2"})
+    public String sayHelloQuey(@RequestParam String fname,@RequestParam String lname){
+        return "Hello "+ fname +" "+lname + "!";
+    }
+}
 
 
 
