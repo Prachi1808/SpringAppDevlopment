@@ -47,7 +47,7 @@ public class HelloRestController  {
     public String sayHelloQuey(@RequestParam String name){
         return "Hello "+ name +" !";
     }
-
+}
 
 
 
